@@ -2,6 +2,7 @@ import { Section } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import OurProduct from "./OurProduct";
+import Slider from "./Slider";
 
 const Home = () => {
   const animationProps = useSpring({
@@ -28,6 +29,7 @@ const Home = () => {
           </animated.h2>
         </div>
       </section>
+      <Slider/>
       <OurProduct/>
     </div>
   );

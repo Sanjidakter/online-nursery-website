@@ -8,7 +8,7 @@ const categories = [
   "Herbs",
   "Trees",
   "Succulents",
-  "Shrubs",
+  "Cacti",
   "Flowers",
   "Fruits",
 ];
@@ -69,7 +69,7 @@ const ProductContainer = () => {
       <div className="bg-primary-gradient w-full h-full rounded-xl space-y-3 p-[5px]">
         <div className="bg-white p-5 w-full h-full rounded-lg space-y-3">
           {filteredProducts?.map((item) => (
-            <ProductCard key={item.id} {...item} />
+            <ProductCard key={item._id} {...item} />
           ))}
         </div>
       </div>

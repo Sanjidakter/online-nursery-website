@@ -3,6 +3,7 @@ import Cart from "@/pages/Cart";
 import Home from "@/pages/Home";
 import Product from "@/pages/Product";
 import ProductDetails from "@/pages/ProductDetails";
+import Slider from "@/pages/Slider";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/slider",
+        element: <Slider />,
       },
     ],
   },
