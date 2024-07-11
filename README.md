@@ -1,14 +1,14 @@
+
+# Project Name
 <div align="center">
-  <h1>Comprehensive Project README Template</h1>
+  <h1>E-Nursery</h1>
 </div>
 
 ---
 
-# Project Name
-
 ## Introduction
 
-Brief introduction or tagline about the project.
+Here you can buy trees & plants for decorating you garden and home.
 
 ## Project Description
 
