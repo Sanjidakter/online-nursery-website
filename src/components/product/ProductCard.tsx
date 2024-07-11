@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useAppDispatch } from "@/redux/hook";
-import { removeTodo, toggleComplete } from "@/redux/features/todoSlice";
 import {
   useDeleteProductMutation,
   useUpdateProductMutation,
 } from "@/redux/api/api";
 import UpdateProductModal from "./UpdateProductModal";
 import { Link } from "react-router-dom";
+import { addToCart } from "@/redux/features/cartSlice";
 
 type TProductCardProps = {
   _id: string;
@@ -17,6 +17,7 @@ type TProductCardProps = {
   description: string;
   rating: number;
   image: string;
+  stock: number;
 };
 
 const ProductCard = ({
@@ -27,6 +28,7 @@ const ProductCard = ({
   category,
   description,
   rating,
+  stock,
 }: TProductCardProps) => {
   // const dispatch = useAppDispatch();
 
@@ -47,7 +49,16 @@ const ProductCard = ({
     setUpdateModalOpen(false);
   };
 
-  const product = { _id, title, description, category, price, image, rating };
+  const handleAddToCart = () => {
+    if (stock > 0) {
+      dispatch(addToCart({ _id, title, price, image, stock }));
+    } else {
+      alert("Product is out of stock");
+    }
+  };
+
+  const product = { _id, title, description, category, price, image, rating, stock };
+
 
   return (
     <div className="bg-white rounded-md flex justify-between items-center p-3 border">
@@ -63,7 +74,7 @@ const ProductCard = ({
       <div className="space-x-5">
         <Link to={`/product/${_id}`}>
           {" "}
-          <Button>Buy</Button>
+          <Button  className="bg-green-400">Buy</Button>
         </Link>
 
         <Button onClick={handleDelete} className="bg-red-500">

@@ -10,17 +10,17 @@ const Navbar = () => {
         <Link to='/'>Home</Link>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <Link to="/products"> 🌿Products</Link>
       </li>
       <li>
-        <Link to="/products"> 🌿Products</Link>
+      <Link to="/cart"> Cart</Link>
       </li>
     </>
   );
 
   return (
     <div className="navbar bg-base-100 text-blue-400">
-      <div className="navbar-start">
+      <div className="">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -50,8 +50,8 @@ const Navbar = () => {
           <i>E-Nursery</i>
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navItems}</ul>
+      <div className="navbar-end hidden lg:flex">
+        <ul className=" menu menu-horizontal px-1">{navItems}</ul>
       </div>
     </div>
   );

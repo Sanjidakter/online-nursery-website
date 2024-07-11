@@ -20,6 +20,13 @@ const ProductDetails = () => {
     return <div>Product not found.</div>;
   }
 
+  const handleAddToCart = () => {
+    if (product?.stock > 0) {
+      dispatch(addToCart({ _id, title, price, image, stock }));
+    } else {
+      alert("Product is out of stock");
+    }
+  };
   return (
     <div className="hero bg-base-200 min-h-screen">
     <div className="hero-content flex-col lg:flex-row">
@@ -33,7 +40,7 @@ const ProductDetails = () => {
         <p className="py-6">
           {product.description}
         </p>
-        <button className="btn btn-primary">Buy</button>
+        <button onClick={handleAddToCart} className="btn bg-green-400">Buy</button>
       </div>
     </div>
   </div>

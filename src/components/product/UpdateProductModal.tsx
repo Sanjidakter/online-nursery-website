@@ -67,7 +67,7 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
 
   return (
     <Dialog open onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] text-black bg-green-600">
         <DialogHeader>
           <DialogTitle>Update Product</DialogTitle>
           <DialogDescription>Update the product details.</DialogDescription>
@@ -142,10 +142,10 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
             </div>
           </div>
           <div className="flex justify-end space-x-2">
-            <Button type="button" onClick={onClose}>
+            <Button className="bg-green-500" type="button" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit" className="bg-blue-500 text-white">
+            <Button type="submit" className="bg-green-500 text-white">
               {isLoading ? "Updating..." : "Update"}
             </Button>
           </div>
