@@ -2,7 +2,6 @@ import { FormEvent, useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -35,6 +34,8 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
 
   const [updateProduct, { isLoading, isError, isSuccess }] =
     useUpdateProductMutation();
+
+  console.log({ isLoading, isSuccess, isError });
 
   useEffect(() => {
     setTitle(product.title);

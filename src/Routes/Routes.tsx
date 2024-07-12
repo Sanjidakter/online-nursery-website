@@ -1,5 +1,6 @@
 import MainLayout from "@/components/Layout/MainLayout";
 import Cart from "@/pages/Cart";
+import Gallery from "@/pages/Gallery";
 import Home from "@/pages/Home";
 import Product from "@/pages/Product";
 import ProductDetails from "@/pages/ProductDetails";
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/slider",
         element: <Slider />,
+      },
+      {
+        path: "/gallery",
+        element: <Gallery />,
       },
     ],
   },

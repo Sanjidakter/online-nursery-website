@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
@@ -7,10 +6,10 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to='/'>Home 🏠</Link>
       </li>
       <li>
-        <Link to="/products"> 🌿Products</Link>
+        <Link to="/products">Products🌿</Link>
       </li>
       <li>
       <Link to="/cart"> Cart</Link>

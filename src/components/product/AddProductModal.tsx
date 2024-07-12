@@ -2,7 +2,6 @@ import { FormEvent, useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -11,8 +10,6 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-// import { useAppDispatch} from "@/redux/hook";
-import { addProduct } from "@/redux/features/todoSlice";
 import { useAddProductMutation } from "@/redux/api/api";
 import { Select } from "@radix-ui/react-select";
 import {
@@ -29,43 +26,35 @@ const AddProductModal = () => {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
   const [rating, setRating] = useState("");
+  const [open, setOpen] = useState(false);
 
-  console.log(price);
-
-  // !For local state management
-  // const dispatch = useAppDispatch();
-
-  // For server
-  // [actualFunctionForPost,{data,isLoading,isError}]
-  const [addProduct, { data, isLoading, isError, isSuccess }] =
+  const [addProduct, { isLoading, isError, isSuccess }] =
     useAddProductMutation();
 
-  console.log({ isLoading, isSuccess, isError, data });
-
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // const randomString = Math.random().toString(36).substring(2, 7);
-
     const productDetails = {
       title: product,
       description,
       category,
       price,
       image,
-      rating
+      rating,
     };
 
-    console.log("inside modal", productDetails);
-
-    addProduct(productDetails);
-
-    console.log(productDetails);
+    try {
+      await addProduct(productDetails).unwrap();
+      console.log("Product added successfully");
+      setOpen(false); // Close the dialog after successful submission
+    } catch (error) {
+      console.error("Failed to add product", error);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-green-400 text-xl font-semibold">
+        <Button className="bg-green-400 text-xl font-semibold" onClick={() => setOpen(true)}>
           Add Product
         </Button>
       </DialogTrigger>
@@ -74,15 +63,27 @@ const AddProductModal = () => {
           <DialogTitle>Product</DialogTitle>
           <DialogDescription>Add Product.</DialogDescription>
         </DialogHeader>
-        <form  onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="product" className="text-right">
                 Product
               </Label>
               <Input
-                onBlur={(e) => setProduct(e.target.value)}
+                value={product}
+                onChange={(e) => setProduct(e.target.value)}
                 id="product"
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="category" className="text-right">
+                Category
+              </Label>
+              <Input
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                id="category"
                 className="col-span-3"
               />
             </div>
@@ -91,7 +92,8 @@ const AddProductModal = () => {
                 Description
               </Label>
               <Input
-                onBlur={(e) => setDescription(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 id="description"
                 className="col-span-3"
               />
@@ -101,7 +103,8 @@ const AddProductModal = () => {
                 Price
               </Label>
               <Input
-                onBlur={(e) => setPrice(e.target.value)}
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 id="price"
                 className="col-span-3"
               />
@@ -111,7 +114,8 @@ const AddProductModal = () => {
                 Image
               </Label>
               <Input
-                onBlur={(e) => setImage(e.target.value)}
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
                 id="image"
                 className="col-span-3"
               />
@@ -121,17 +125,17 @@ const AddProductModal = () => {
                 Rating
               </Label>
               <Input
-                onBlur={(e) => setRating(e.target.value)}
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
                 id="rating"
                 className="col-span-3"
               />
             </div>
-          
           </div>
           <div className="flex justify-end ">
-            <DialogClose asChild>
-              <Button className="bg-white" type="submit">Save changes</Button>
-            </DialogClose>
+            <Button className="bg-white" type="submit">
+              Save changes
+            </Button>
           </div>
         </form>
       </DialogContent>

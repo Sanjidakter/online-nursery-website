@@ -1,5 +1,4 @@
 import { title } from "process";
-import React from "react";
 import ImageSlider from "./ImageSlider";
 
 const Slider = () => {
@@ -27,13 +26,12 @@ const Slider = () => {
   ];
 
   const containerStyles = {
-    width: "500px",
-    height: "280px",
+    height: "380px",
     margin: "0 auto",
   };
   return (
     <div >
-      <div style={containerStyles}>
+      <div className="w-full sm:w-[100%] md:w-[600px] p-4" style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>
     </div>

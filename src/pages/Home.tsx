@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import OurProduct from "./OurProduct";
 import Slider from "./Slider";
+import Gallery from "./Gallery";
 
 const Home = () => {
   const animationProps = useSpring({
@@ -31,6 +32,7 @@ const Home = () => {
       </section>
       <Slider/>
       <OurProduct/>
+      <Gallery/>
     </div>
   );
 };
