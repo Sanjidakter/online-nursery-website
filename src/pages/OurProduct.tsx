@@ -1,13 +1,22 @@
-
 import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "@/redux/api/api";
 
-const OurProduct = () => {
- 
+type TProductItem ={
+  id:string,
+  _id: string;
+  category: string;
+  title: string;
+  price: number;
+  description: string;
+  rating: number;
+  image: string;
+  stock: number;
+}
 
+const OurProduct = () => {
   const { data: products, error, isLoading } = useGetProductsQuery("");
 
-  console.log("Products Data:", products?.data);
+  // console.log("Products Data:", products?.data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -30,7 +39,7 @@ const OurProduct = () => {
             Popular Greeneries
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {products?.data?.slice(0, 6).map((productItem) => (
+            {products?.data?.slice(0, 6).map((productItem:TProductItem) => (
               <div
                 key={productItem.id}
                 className="bg-white shadow-lg rounded-lg overflow-hidden"
@@ -45,7 +54,9 @@ const OurProduct = () => {
                     {productItem.title}
                   </h3>
                   <p className="text-gray-700">
-                    {productItem.students} students enrolled
+                    {productItem.stock > 0
+                      ? "Available in stock. Hurry!"
+                      : "out of stcok!"}
                   </p>
                   <Link to={`/product/${productItem._id}`}>
                     <button className="mt-4 btn btn-accent">Shop Now</button>

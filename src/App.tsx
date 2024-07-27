@@ -1,4 +1,3 @@
-import { Button } from "./components/ui/button"
 import Product from "./pages/Product";
 
 

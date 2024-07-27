@@ -2,13 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://nursery-db.vercel.app/api" }),
   tagTypes: ["product"],
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => {
         return {
-          url: `/products`,
+          url: `/nurseries`,
           method: "GET",
         };
       },
@@ -18,7 +18,7 @@ export const baseApi = createApi({
       query: (data) => {
         console.log("inside base api=>", data);
         return {
-          url: "/product",
+          url: "/nurseries",
           method: "POST",
           body: data,
         };
@@ -29,7 +29,7 @@ export const baseApi = createApi({
       query: (options) => {
         console.log("inside base api=>", options);
         return {
-          url: `/product/${options.id}`,
+          url: `/nurseries/${options.id}`,
           method: "PUT",
           body: options.data,
         };
@@ -40,7 +40,7 @@ export const baseApi = createApi({
       query: (options) => {
         console.log("inside base api=>", options);
         return {
-          url: `/product/${options.id}`,
+          url: `/nurseries/${options.id}`,
           method: "DELETE",
         };
       },
@@ -49,7 +49,7 @@ export const baseApi = createApi({
     getProductsById: builder.query({
       query: (id: string) => {
         return{
-         url: `/product/${id}`,
+         url: `/nurseries/${id}`,
          method:'GET'
         };
       }, // Endpoint to fetch product by ID

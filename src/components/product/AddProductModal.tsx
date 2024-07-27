@@ -11,13 +11,6 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useAddProductMutation } from "@/redux/api/api";
-import { Select } from "@radix-ui/react-select";
-import {
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
 
 const AddProductModal = () => {
   const [product, setProduct] = useState("");
@@ -26,10 +19,13 @@ const AddProductModal = () => {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
   const [rating, setRating] = useState("");
+  const [stock, setStock] = useState("");
   const [open, setOpen] = useState(false);
 
-  const [addProduct, { isLoading, isError, isSuccess }] =
+  const [addProduct] =
     useAddProductMutation();
+
+  // console.log(isLoading, isError, isSuccess);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -40,6 +36,7 @@ const AddProductModal = () => {
       price,
       image,
       rating,
+      stock
     };
 
     try {
@@ -54,7 +51,10 @@ const AddProductModal = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-green-400 text-xl font-semibold" onClick={() => setOpen(true)}>
+        <Button
+          className="bg-green-400 text-xl font-semibold"
+          onClick={() => setOpen(true)}
+        >
           Add Product
         </Button>
       </DialogTrigger>
@@ -128,6 +128,17 @@ const AddProductModal = () => {
                 value={rating}
                 onChange={(e) => setRating(e.target.value)}
                 id="rating"
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="stock" className="text-right">
+                Stock
+              </Label>
+              <Input
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
+                id="stock"
                 className="col-span-3"
               />
             </div>

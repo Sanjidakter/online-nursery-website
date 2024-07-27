@@ -1,8 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { useGetProductsQuery } from "@/redux/api/api";
 import AddProductModal from "./AddProductModal";
 
+
+type TProduct={
+  _id: string;
+  category: string;
+  title: string;
+  price: number;
+  description: string;
+  rating: number;
+  image: string;
+  stock: number;
+}
 // Example JSON data structure
 const categories = [
   "Herbs",
@@ -33,7 +44,7 @@ const ProductContainer = () => {
   }
 
   // Filter products based on search term and filter criteria
-  const filteredProducts = products?.data?.filter((product) => {
+  const filteredProducts = products?.data?.filter((product:TProduct) => {
     return (
       product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (filter === "" || product.category === filter)
@@ -68,7 +79,7 @@ const ProductContainer = () => {
       </div>
       <div className="bg-primary-gradient w-full h-full rounded-xl space-y-3 p-[5px]">
         <div className="bg-white p-5 w-full h-full rounded-lg space-y-3">
-          {filteredProducts?.map((item) => (
+          {filteredProducts?.map((item:TProduct) => (
             <ProductCard key={item._id} {...item} />
           ))}
         </div>

@@ -12,13 +12,13 @@ const Navbar = () => {
         <Link to="/products">Products🌿</Link>
       </li>
       <li>
-      <Link to="/cart"> Cart</Link>
+      <Link to="/cart"> Cart🛒 </Link>
       </li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 text-blue-400">
+    <div className="navbar bg-base-100 text-green-400">
       <div className="">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

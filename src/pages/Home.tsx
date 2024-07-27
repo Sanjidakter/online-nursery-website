@@ -1,5 +1,3 @@
-import { Section } from "lucide-react";
-import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import OurProduct from "./OurProduct";
 import Slider from "./Slider";

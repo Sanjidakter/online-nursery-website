@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import{ useState } from "react";
 import { Button } from "../ui/button";
-import { useAppDispatch } from "@/redux/hook";
 import {
   useDeleteProductMutation,
-  useUpdateProductMutation,
+  // useUpdateProductMutation,
 } from "@/redux/api/api";
 import UpdateProductModal from "./UpdateProductModal";
 import { Link } from "react-router-dom";
-import { addToCart } from "@/redux/features/cartSlice";
 
 type TProductCardProps = {
   _id: string;
@@ -32,9 +30,11 @@ const ProductCard = ({
 }: TProductCardProps) => {
   // const dispatch = useAppDispatch();
 
-  const [updateProduct, { isLoading }] = useUpdateProductMutation();
+  // const [updateProduct, { isLoading }] = useUpdateProductMutation();
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+
+  console.log(isDeleting);
 
   const handleDelete = () => {
     deleteProduct({ id: _id });
@@ -49,13 +49,13 @@ const ProductCard = ({
     setUpdateModalOpen(false);
   };
 
-  const handleAddToCart = () => {
-    if (stock > 0) {
-      dispatch(addToCart({ _id, title, price, image, stock }));
-    } else {
-      alert("Product is out of stock");
-    }
-  };
+  // const handleAddToCart = () => {
+  //   if (stock > 0) {
+  //     dispatch(addToCart({ _id, title, price, image, stock }));
+  //   } else {
+  //     alert("Product is out of stock");
+  //   }
+  // };
 
   const product = { _id, title, description, category, price, image, rating, stock };
 
