@@ -1,10 +1,14 @@
-
 # Project Name
+
 <div align="center">
   <h1>E-Nursery</h1>
 </div>
 
 ---
+
+## Live URL
+
+Visit the live application at: https://online-nursery-website-2.vercel.app/
 
 ## Introduction
 
@@ -12,43 +16,56 @@ Here you can buy trees & plants for decorating you garden and home.
 
 ## Project Description
 
-Detailed description of the project, including its purpose and goals.
+This project is an online nursery website designed to streamline the process of managing and purchasing plants and related products. The purpose of the project is to provide users with an intuitive interface for browsing a diverse range of products, managing their shopping cart, and completing purchases efficiently.
 
 ## Features
 
-- List of key features or functionalities.
-- Bullet points are helpful for clarity.
+- Product and Category Management 🛠️
+  Product List Table: Displays products in a table format, including columns for the image, title, price, category, and actions.
+  Action Buttons:
+  Update: Opens a form in a modal for modifying existing product details.
+  Delete: Opens a confirmation modal, asking for confirmation before removing a product.
+  Adding a Product:
+  Button to create a new product.
+  Form to add new products with fields for category, title, price, quantity, description, rating, and image (using ImgBB for image upload or direct link entry).
+  Real-time Updates: All update, delete, and create actions reflect in real-time with optimistic UI updates.
+
+- Product Browsing 🌿
+  Filtering, Pagination, Sorting, and Searching:
+  Advanced filtering options to narrow down product selection.
+  Pagination for easy navigation across multiple pages of products.
+  Sorting options to arrange products by relevance, price, name, etc.
+  Robust searching capabilities to quickly find specific items.
+  Product Details: Users can view detailed information about each product.
+
+- Shopping Cart 🛒
+  Add to Cart: Users can add products to their cart by clicking an "Add to Cart" button. Products out of stock cannot be added.
+  Quantity Management:
+  Duplicate products are not added; instead, the quantity of the existing product is increased.
+  Users cannot add more products than the available quantity in stock.
+  Proceed to Checkout: Users can proceed to the checkout page from the cart section.
+  Checkout and Payment 💳
+  Order Creation:
+  Orders are created in the database with customer details, including name, phone number, address, and other required information collected from a form before proceeding to the payment page.
+  If any selected product is out of stock, the order creation process will be prevented.
+  Upon order creation, the system automatically decreases the quantity of each product in the order from available stock levels.
 
 ## Technology Stack
 
-- List of technologies, frameworks, and tools used in the project.
-- Example: React, Redux, Node.js, MongoDB, etc.
-
-## Installation Guideline
-
-Instructions on how to install, configure, and get the project running locally.
-
-### Prerequisites
-
-- List any software or dependencies that need to be installed beforehand (if any).
+- **TypeScript**: Strongly typed JavaScript for robust code
+- **Frontend**: React, Redux, Node.js
 
 ### Installation Steps
 
-1. Step-by-step instructions on how to install the project.
-2. Provide code examples or commands for clarity.
+1. **Clone the repository**
 
-### Configuration
+2. **Install dependencies**
 
-1. Create a `.env` file in the root directory of the project.
-2. Add necessary configuration variables in the `.env` file.
-   Example:
-   ```bash
-    PORT=3000
-    DB_URL=your_db_connection_uri
-    API_KEY=your_api_key_here
-   ```
-3. Explain any specific configuration requirements or variables used in your project.
+`````bash
+  npm install -f
 
-## Usage
+3. . **Run the application**
 
-Instructions or examples for using the project. Include screenshots or code snippets if applicable.
+````bash
+    npm run dev
+`````

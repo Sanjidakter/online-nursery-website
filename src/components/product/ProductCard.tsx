@@ -6,6 +6,7 @@ import {
 } from "@/redux/api/api";
 import UpdateProductModal from "./UpdateProductModal";
 import { Link } from "react-router-dom";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
 type TProductCardProps = {
   _id: string;
@@ -33,11 +34,13 @@ const ProductCard = ({
   // const [updateProduct, { isLoading }] = useUpdateProductMutation();
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+  const [isDeleteModalOpen,setDeleteModalOpen]=useState(false);
 
   console.log(isDeleting);
 
   const handleDelete = () => {
     deleteProduct({ id: _id });
+    setDeleteModalOpen(false); // Close the modal after deletion
   };
 
   const handleUpdateClick = () => {
@@ -47,6 +50,14 @@ const ProductCard = ({
 
   const handleCloseUpdateModal = () => {
     setUpdateModalOpen(false);
+  };
+
+  const handleDeleteClick = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteModalOpen(false);
   };
 
   // const handleAddToCart = () => {
@@ -77,7 +88,7 @@ const ProductCard = ({
           <Button  className="bg-green-400">Buy</Button>
         </Link>
 
-        <Button onClick={handleDelete} className="bg-red-500">
+        <Button onClick={handleDeleteClick} className="bg-red-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -113,6 +124,12 @@ const ProductCard = ({
           <UpdateProductModal
             product={product}
             onClose={handleCloseUpdateModal}
+          />
+        )}
+         {isDeleteModalOpen && (
+          <DeleteConfirmationModal
+            onConfirm={handleDelete}
+            onCancel={handleCancelDelete}
           />
         )}
       </div>

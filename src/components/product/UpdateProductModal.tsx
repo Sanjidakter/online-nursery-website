@@ -20,6 +20,7 @@ type UpdateProductModalProps = {
     price: number;
     image: string;
     rating: number;
+    stock:number;
   };
   onClose: () => void;
 };
@@ -31,6 +32,9 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
   const [category, setCategory] = useState(product.category);
   const [image, setImage] = useState(product.image);
   const [rating, setRating] = useState(product.rating.toString());
+  const [stock,setStock] = useState(product.stock.toString());
+
+  console.log(rating,stock);
 
   const [updateProduct, { isLoading, isError, isSuccess }] =
     useUpdateProductMutation();
@@ -44,6 +48,7 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
     setCategory(product.category);
     setImage(product.image);
     setRating(product.rating.toString());
+    setStock(product.stock.toString());
   }, [product]);
 
   const onSubmit = (e: FormEvent) => {
@@ -58,6 +63,7 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
         price: parseFloat(price),
         image,
         rating: parseFloat(rating),
+        stock:parseInt(stock),
       },
     };
 
@@ -105,6 +111,17 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 id="price"
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="stock" className="text-right">
+                Quantity
+              </Label>
+              <Input
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
+                id="stock"
                 className="col-span-3"
               />
             </div>
