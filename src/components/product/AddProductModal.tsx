@@ -11,6 +11,7 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useAddProductMutation } from "@/redux/api/api";
+import toast from "react-hot-toast";
 
 const AddProductModal = () => {
   const [product, setProduct] = useState("");
@@ -41,6 +42,7 @@ const AddProductModal = () => {
 
     try {
       await addProduct(productDetails).unwrap();
+      toast.success("Product added successfully!");
       console.log("Product added successfully");
       setOpen(false); // Close the dialog after successful submission
     } catch (error) {

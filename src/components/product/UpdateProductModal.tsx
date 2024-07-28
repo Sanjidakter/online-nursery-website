@@ -10,6 +10,7 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useUpdateProductMutation } from "@/redux/api/api";
+import toast from "react-hot-toast";
 
 type UpdateProductModalProps = {
   product: {
@@ -68,6 +69,7 @@ const UpdateProductModal = ({ product, onClose }: UpdateProductModalProps) => {
     };
 
     updateProduct(updatedProductDetails).then(() => {
+      toast.success('Product updated!');
       onClose();
     });
   };
